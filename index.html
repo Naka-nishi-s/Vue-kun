@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .lightblue {
+        color: lightblue;
+      }
+
+      .orange {
+        color: orange;
+      }
+    </style>
+
+    <p>AAA</p>
+    <p>BBB</p>
+    <p>CCC</p>
+    <div id="app">
+      {{message}}
+      <button v-on:click="changeMessage">クリック！</button>
+      <div>
+        <h2>カウンタ</h2>
+        <p>
+          <span>{{count}}</span>
+        </p>
+        <button @click="increment">インクリメント</button>
+        <button @click="decrement">デクリメント</button>
+
+        <h2>If文の表示</h2>
+        <p>ここに表示される:<span v-if="seen">Trueです!</span></p>
+        <button @click="turnBoolean">Boolean切り替えボタン</button>
+
+        <h2>色をバインドする</h2>
+        <div :class="class1">
+          <p>This is Orange</p>
+          <button @click="toggleClass">クラスをトグルで変更する</button>
+        </div>
+
+        <h2>テキストをFor文でループする</h2>
+        <ul>
+          <li v-for="todo in todos">{{ todo.text }}</li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      const App = {
+        data() {
+          // 使うステート（データ）をすべて return しておく
+          return {
+            message: "Hello Vue.js!",
+            count: 0,
+            seen: true,
+            class1: "orange",
+            todos: [
+              { text: "Good morning" },
+              { text: "Good noon" },
+              { text: "Good evening" },
+            ],
+          };
+        },
+
+        methods: {
+          changeMessage() {
+            this.message = "OK,good Job!";
+          },
+
+          increment() {
+            this.count += 1;
+          },
+
+          decrement() {
+            this.count -= 1;
+          },
+
+          turnBoolean() {
+            this.seen = !this.seen;
+          },
+
+          toggleClass() {
+            this.class1 = this.class1 === "orange" ? "lightblue" : "orange";
+          },
+        },
+      };
+
+      app = Vue.createApp(App);
+      app.mount("#app");
+    </script>
+  </body>
+</html>
