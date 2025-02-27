@@ -17,35 +17,39 @@
       }
     </style>
 
-    <p>AAA</p>
-    <p>BBB</p>
-    <p>CCC</p>
     <div id="app">
-      {{message}}
-      <button v-on:click="changeMessage">クリック！</button>
+      <!-- {{message}}
+      <button v-on:click="changeMessage">クリック！</button> -->
       <div>
-        <h2>カウンタ</h2>
+        <!-- <h2>カウンタ</h2>
         <p>
           <span>{{count}}</span>
         </p>
         <button @click="increment">インクリメント</button>
-        <button @click="decrement">デクリメント</button>
+        <button @click="decrement">デクリメント</button> -->
 
-        <h2>If文の表示</h2>
+        <!-- <h2>If文の表示</h2>
         <p>ここに表示される:<span v-if="seen">Trueです!</span></p>
-        <button @click="turnBoolean">Boolean切り替えボタン</button>
+        <button @click="turnBoolean">Boolean切り替えボタン</button> -->
 
-        <h2>色をバインドする</h2>
+        <!-- <h2>色をバインドする</h2>
         <div :class="class1">
           <p>This is Orange</p>
           <button @click="toggleClass">クラスをトグルで変更する</button>
-        </div>
+        </div> -->
 
-        <h2>テキストをFor文でループする</h2>
+        <!-- <h2>テキストをFor文でループする</h2>
         <ul>
           <li v-for="todo in todos">{{ todo.text }}</li>
-        </ul>
+        </ul> -->
+
+        <!-- <h2>画像を出し分ける</h2>
+        <img v-bind:src="kaizoku" alt="海賊の一味" />
+        <button @click="changeImage">画像を切り替える</button> -->
+        <button v-bind="nice">This is Button</button>
       </div>
+
+      <!-- <template1></template1> -->
     </div>
     <script>
       const App = {
@@ -61,6 +65,12 @@
               { text: "Good noon" },
               { text: "Good evening" },
             ],
+            kaizoku: "/luffy.png",
+            nice: {
+              id: "AAA",
+              class: "GGG",
+              style: "color:pink",
+            },
           };
         },
 
@@ -84,8 +94,19 @@
           toggleClass() {
             this.class1 = this.class1 === "orange" ? "lightblue" : "orange";
           },
+
+          changeImage() {
+            this.kaizoku =
+              this.kaizoku === "/luffy.png" ? "/zoro.png" : "/luffy.png";
+          },
         },
       };
+
+      // app.component("template1", {
+      //   template: `
+      //   <div>Nice!!!!!</div>
+      //   `,
+      // });
 
       app = Vue.createApp(App);
       app.mount("#app");
